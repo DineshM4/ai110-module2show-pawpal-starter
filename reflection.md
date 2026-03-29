@@ -11,7 +11,6 @@ Class/Object: Owner
     Attributes:
         - Owner name
         - Owner available times
-        - Owner preferences
         - Owner pets
     Methods:
         - add pet()
@@ -54,11 +53,14 @@ Class/Object: Scheduler
 - Briefly describe your initial UML design.
 - What classes did you include, and what responsibilities did you assign to each?
 
+My initial UML design had the scheduler class as the main aspect of the system. The scheduler class references both the owner class and the pet class, and also manages the CareTask class. I also had my owner class "own" the pet class, and my pet class "has" the Caretask class. Of the 4 classes I have, the owner class' responsibility was to have ownership of the pet class and have a list of available times. The pet class was responsible for its species and the set of tasks the pet had to complete. The CareTask class was responsible for actually containing those tasks such as their priority, duration, and name/description. Finally the scheduler uses data from all these 3 classes to first sort the tasks, then categorize them into Scheduled/Unscheduled tasks and a log for why it was put in set category. Finally, I had the scheduler also format the plan properly to send to streamlit. More information is above.
+
 **b. Design changes**
 
 - Did your design change during implementation?
 - If yes, describe at least one change and why you made it.
 
+Yes, my design changed a little bit becoming more precise with the help of AI. for example, the AI helped create some more logical methods like update species info or to have send_plan() return a proper string format for Streamlit. However my favorite update was to parse the raw time data from just strings into actual datetime objects. This ensures that we don't have any logic bottlenecks due to the time being parsed wrongly in strings. This actually ended up becoming a new class that wraps Caretask class with a new time entry.
 ---
 
 ## 2. Scheduling Logic and Tradeoffs
