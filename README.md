@@ -10,18 +10,6 @@ A busy pet owner needs help staying consistent with pet care. They want an assis
 - Consider constraints (time available, priority, owner preferences)
 - Produce a daily plan and explain why it chose that plan
 
-Your job is to design the system first (UML), then implement the logic in Python, then connect it to the Streamlit UI.
-
-## What you will build
-
-Your final app should:
-
-- Let a user enter basic owner + pet info
-- Let a user add/edit tasks (duration + priority at minimum)
-- Generate a daily schedule/plan based on constraints and priorities
-- Display the plan clearly (and ideally explain the reasoning)
-- Include tests for the most important scheduling behaviors
-
 ## Features
 
 | Feature | Description |
@@ -99,8 +87,6 @@ The 9 tests cover the following behaviors:
 | `test_adjacent_tasks_are_not_a_conflict` | Tasks that touch but do not overlap (`a.end == b.start`) are not flagged as conflicts |
 | `test_overlapping_availability_windows_double_count_minutes` | `parse_time_slots()` does not merge overlapping windows — each is parsed as a separate slot (documents known limitation) |
 | `test_empty_string_recurrence_returns_none` | `next_occurrence()` returns `None` for `recurrence=""`, not just `None` |
-
-Confidence Level: 4 stars, All tests work for all edge cases thought of. However, with some complexity in the code, there may be some errors in the code that I can't percieve. Although I have a pretty good understanding of the job of the code, I only have a moderate understanding(after prompting AI to help) of the code itself. This may result in some hidden edge case that I would not know to test for.
 
 ---
 
