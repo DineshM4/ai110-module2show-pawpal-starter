@@ -122,3 +122,6 @@ Yes, my design changed a little bit becoming more precise with the help of AI. f
 
 
 ![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)

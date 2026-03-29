@@ -22,6 +22,25 @@ Your final app should:
 - Display the plan clearly (and ideally explain the reasoning)
 - Include tests for the most important scheduling behaviors
 
+## Features
+
+| Feature | Description |
+|---|---|
+| **Priority-based sorting** | Tasks are sorted by `(priority, pet_name, duration)` before placement, so Critical tasks always claim the earliest available slot |
+| **Category-preferred time windows** | Each category (Feeding, Exercise, Grooming, Medical, Enrichment) has preferred time-of-day windows (Morning, Midday, Afternoon, Evening); the scheduler tries those first before falling back to any open slot |
+| **Configurable task buffer** | A user-adjustable gap (default 5 min) is inserted between consecutive tasks within a slot to prevent back-to-back scheduling without transition time |
+| **Chronological display** | Scheduled entries within each time window are displayed sorted by start time |
+| **Slot utilization report** | Each availability window shows used/total minutes and a utilization percentage |
+| **Conflict detection** | A pairwise interval-overlap scan (`a.start < b.end AND b.start < a.end`) flags every overlapping pair, reporting overlap duration and whether the conflict is within the same pet or across pets |
+| **Daily & weekly recurrence** | Completing a recurring task automatically queues a fresh copy with `due_date` advanced by 1 day (daily) or 7 days (weekly); the action is logged in the reasoning log |
+| **Task filtering** | `filter_tasks(completed, pet_name)` scans all pet task lists directly so completed and pending tasks remain queryable after the scheduler has run |
+| **Unscheduled task suggestions** | When a task can't fit, the output identifies the slot with the most remaining free time and suggests exactly how many minutes to extend it |
+| **Critical task alerts** | Priority-1 tasks that fail to schedule produce a prominent warning banner separate from ordinary unscheduled tasks |
+| **Per-pet completion progress** | After each schedule build, each pet shows a done/total task count and completion percentage |
+| **Scheduling reasoning log** | Every placement decision (including preferred-window matches, fallbacks, and recurring-task queues) is recorded and shown as a collapsible log |
+
+---
+
 ## Smarter Scheduling
 
 Beyond the basic daily plan, PawPal+ includes three algorithmic extensions:
@@ -85,22 +104,7 @@ Confidence Level: 4 stars, All tests work for all edge cases thought of. However
 
 ---
 
-## Getting started
+📸 Demo
 
-### Setup
-
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-### Suggested workflow
-
-1. Read the scenario carefully and identify requirements and edge cases.
-2. Draft a UML diagram (classes, attributes, methods, relationships).
-3. Convert UML into Python class stubs (no logic yet).
-4. Implement scheduling logic in small increments.
-5. Add tests to verify key behaviors.
-6. Connect your logic to the Streamlit UI in `app.py`.
-7. Refine UML so it matches what you actually built.
+<a href="image-2.png" target="_blank"><img src="image-2.png" alt="Demo screenshot 2" width="700"/></a>
+<a href="image-3.png" target="_blank"><img src="image-3.png" alt="Demo screenshot 3" width="700"/></a>
